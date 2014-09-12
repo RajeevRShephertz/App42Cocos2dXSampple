@@ -257,7 +257,6 @@ bool TestPushNotificationService::init()
                              sendPushToAllItem, NULL);
 
 	auto menu2 = Menu::create(
-                             sendPushToAllItem,
                              sendPushToAllByTypeItem,
                              sendPushToGroupItem,
                              sendPushToTargetUsersItem,

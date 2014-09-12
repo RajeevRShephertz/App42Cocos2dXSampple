@@ -180,7 +180,6 @@ bool TestRewardService::init()
                              redeemRewardItem, NULL);
 
 	auto menu1 = Menu::create(
-                             redeemRewardItem,
                              getGameRewardPointsForUserItem,
                              getRewardByNameItem,
                              getTopNRewardEarnersItem,
