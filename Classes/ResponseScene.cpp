@@ -97,7 +97,7 @@ bool ResponseScene::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = LabelTTF::create("Response Scene", "Arial", 24);
+    auto label = LabelTTF::create("Response Scene", "Marker Felt", 24);
     
     // position the label on the center of the screen
     label->setPosition(Vec2(origin.x + visibleSize.width/2,
@@ -114,7 +114,7 @@ void ResponseScene::loadResponse(string response)
    // printf("ResponseScene::loadResponse");
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
-    auto label = LabelTTF::create(response, "Arial", 24);
+    auto label = LabelTTF::create(response, "Marker Felt", 24);
     y_pos -= 40;
     label->setAnchorPoint(Vec2(0,0));
     // position the label on the center of the screen
