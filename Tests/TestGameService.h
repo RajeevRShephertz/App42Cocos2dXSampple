@@ -12,8 +12,9 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "App42API.h"
+#include "appwarp.h"
 
-class TestGameService : public cocos2d::Layer, public App42CallBack
+class TestGameService : public cocos2d::Layer, public App42CallBack,public AppWarp::ConnectionRequestListener
 {
 public:
     
@@ -37,17 +38,19 @@ public:
     void getAllGames(Ref *sender);
     void getAllGamesByPaging(Ref *sender);
     void getAllGamesCount(Ref *sender);
-    
+    void connectToAppWarp(Ref *sender);
     // a selector callback
     void onGameRequestCompleted( void *response);
     void menuCloseCallback(Ref* pSender);
     void loadResponseScene();
     
+    void onConnectDone(int res);
+    
 private:
     std::string apiKey;
     std::string secretKey;
     vector<string> responseArray;
-    
+    string userName;
 };
 
 #endif /* defined(__App42Cocos2dXSDK_3_0Beta2_Sample__TestGameService__) */

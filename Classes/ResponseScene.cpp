@@ -73,7 +73,7 @@ bool ResponseScene::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     float button_y_Offset =30;
-    y_pos = visibleSize.height-button_y_Offset;
+    y_pos = origin.y+visibleSize.height-button_y_Offset;
     float x_pos = origin.x + visibleSize.width/2;
     
     /**

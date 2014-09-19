@@ -78,7 +78,13 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../App42/UploadService/App42UploadResponse.cpp \
                    ../../App42/UploadService/UploadService.cpp \
                    ../../App42/UserService/App42UserResponse.cpp \
-                   ../../App42/UserService/UserService.cpp
+                   ../../App42/UserService/UserService.cpp \
+                   ../../AppWarp/appwarp.cpp \
+                   ../../AppWarp/appwarp_extended.cpp \
+                   ../../AppWarp/requests.cpp \
+                   ../../AppWarp/socket.cpp \
+                   ../../AppWarp/udpsocket.cpp \
+                   ../../AppWarp/utilities.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
                     $(LOCAL_PATH)/../../App42/Common \
@@ -98,7 +104,9 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes \
                     $(LOCAL_PATH)/../../App42/SocialService \
                     $(LOCAL_PATH)/../../App42/GameService \
                     $(LOCAL_PATH)/../../App42/StorageService \
-                    $(LOCAL_PATH)/../../Tests
+                    $(LOCAL_PATH)/../../Tests \
+                    $(LOCAL_PATH)/../../AppWarp
+                    
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

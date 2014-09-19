@@ -8,11 +8,12 @@
 
 #include "TestGameService.h"
 #include "TestHome.h"
-
+//#include "appwarp.h"
 
 #define GO_HOME 104
 
-
+#define APPWARP_APP_KEY     "cad2bfab6310acd9696187b98682925125e469ab0d0d585db0b00609f461b791"
+#define APPWARP_SECRET_KEY  "55811709916e7ce4405cde0cdc5a254cf4b506fbafdae05760a73100b8080b67"
 
 USING_NS_CC;
 
@@ -103,6 +104,16 @@ bool TestGameService::init()
     auto getAllGamesCountItem  = MenuItemLabel::create(getAllGamesCountLabel, CC_CALLBACK_1(TestGameService::getAllGamesCount, this));
     y_pos -= button_y_Offset;
     getAllGamesCountItem->setPosition(Point(x_pos,y_pos));
+    
+    
+    /**
+     * ConnectToAppWarp
+     */
+    auto connectToAppWarpLabel = LabelTTF::create("ConnectToAppWarp", "Marker Felt", 24);
+    connectToAppWarpLabel->setColor(Color3B::WHITE);
+    auto connectToAppWarpItem  = MenuItemLabel::create(connectToAppWarpLabel, CC_CALLBACK_1(TestGameService::connectToAppWarp, this));
+    y_pos -= button_y_Offset;
+    connectToAppWarpItem->setPosition(Point(x_pos,y_pos));
 
  	 
 
@@ -112,11 +123,66 @@ bool TestGameService::init()
                              getGameItem,
                              getAllGameItem,
                              getAllGameByPagingItem,
-                             getAllGamesCountItem, NULL);
+                             getAllGamesCountItem,
+                             connectToAppWarpItem, NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
     
     return true;
+}
+
+std::string genRandom()
+{
+	std::string charStr;
+	srand (time(NULL));
+    
+	for (int i = 0; i < 10; ++i) {
+		charStr += (char)(65+(rand() % (26)));
+	}
+    
+	return charStr;
+}
+
+
+void TestGameService::connectToAppWarp(Ref *sender)
+{
+    AppWarp::Client::initialize(APPWARP_APP_KEY,APPWARP_SECRET_KEY);
+    AppWarp::Client* warpClientRef = AppWarp::Client::getInstance();
+    warpClientRef->setRecoveryAllowance(60);
+    warpClientRef->setConnectionRequestListener(this);
+//    warpClientRef->setNotificationListener(this);
+//    warpClientRef->setRoomRequestListener(this);
+//    warpClientRef->setZoneRequestListener(this);
+    userName = genRandom();
+    warpClientRef->connect(userName);
+    
+}
+
+void TestGameService::onConnectDone(int res)
+{
+    if (res==AppWarp::ResultCode::success)
+    {
+        printf("\nonConnectDone .. SUCCESS..session=%d\n",AppWarp::AppWarpSessionID);
+        //AppWarp::Client *warpClientRef;
+        //warpClientRef = AppWarp::Client::getInstance();
+        //warpClientRef->joinRoom(ROOM_ID);
+    }
+    else if (res==AppWarp::ResultCode::success_recovered)
+    {
+        printf("\nonConnectDone .. SUCCESS with success_recovered..session=%d\n",AppWarp::AppWarpSessionID);
+    }
+    else if (res==AppWarp::ResultCode::connection_error_recoverable)
+    {
+        printf("\nonConnectDone .. FAILED..connection_error_recoverable..session=%d\n",AppWarp::AppWarpSessionID);
+    }
+    else if (res==AppWarp::ResultCode::bad_request)
+    {
+        printf("\nonConnectDone .. FAILED with bad request..session=%d\n",AppWarp::AppWarpSessionID);
+    }
+    else
+    {
+        printf("\nonConnectDone .. FAILED with unknown reason..session=%d\n",AppWarp::AppWarpSessionID);
+    }
 }
 
 
