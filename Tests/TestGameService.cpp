@@ -109,12 +109,12 @@ bool TestGameService::init()
     /**
      * ConnectToAppWarp
      */
-    auto connectToAppWarpLabel = LabelTTF::create("ConnectToAppWarp", "Marker Felt", 24);
+    /*auto connectToAppWarpLabel = LabelTTF::create("ConnectToAppWarp", "Marker Felt", 24);
     connectToAppWarpLabel->setColor(Color3B::WHITE);
     auto connectToAppWarpItem  = MenuItemLabel::create(connectToAppWarpLabel, CC_CALLBACK_1(TestGameService::connectToAppWarp, this));
     y_pos -= button_y_Offset;
     connectToAppWarpItem->setPosition(Point(x_pos,y_pos));
-
+	*/
  	 
 
     // create menu, it's an autorelease object
@@ -124,7 +124,7 @@ bool TestGameService::init()
                              getAllGameItem,
                              getAllGameByPagingItem,
                              getAllGamesCountItem,
-                             connectToAppWarpItem, NULL);
+                             /*connectToAppWarpItem,*/ NULL);
     menu->setPosition(Point::ZERO);
     this->addChild(menu, 1);
     
@@ -144,7 +144,7 @@ std::string genRandom()
 }
 
 
-void TestGameService::connectToAppWarp(Ref *sender)
+/*void TestGameService::connectToAppWarp(Ref *sender)
 {
     AppWarp::Client::initialize(APPWARP_APP_KEY,APPWARP_SECRET_KEY);
     AppWarp::Client* warpClientRef = AppWarp::Client::getInstance();
@@ -185,7 +185,7 @@ void TestGameService::onConnectDone(int res)
     }
 }
 
-
+*/
 
 void TestGameService::createGame(Ref *sender)
 {
