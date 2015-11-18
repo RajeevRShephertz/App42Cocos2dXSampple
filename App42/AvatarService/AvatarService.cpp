@@ -135,7 +135,8 @@ void AvatarService::CreateAvatar(const char* name, const char* userName, const c
     }
     
     string timestamp = Util::getTimeStamp();
-    
+    printf("\n%s\n",timestamp.c_str());
+    Util::getUTCTimeStamp();
     /**
      * Creating SignParams and signature
      */

@@ -333,7 +333,6 @@ bool TestBuddyService::init()
 void TestBuddyService::sendFrndRequest(Ref* sender)
 {
     //static int counter =0;
-    
     BuddyService* buddyService = App42API::BuildBuddyService();
     const char* userName = "Rajeev1231223";
     const char* buddyName = "R";
@@ -519,7 +518,7 @@ void TestBuddyService::getFriendsByLocation(Ref* sender)
 /**
  * Callback Methods
  */
-void TestBuddyService::onBuddyServiceRequestCompleted( void *response)
+void TestBuddyService::onBuddyServiceRequestCompleted(void *response)
 {
     App42BuddyResponse *app42BuddyResponse = (App42BuddyResponse*)response;
     string code = StringUtils::format("Code = %d",app42BuddyResponse->getCode());

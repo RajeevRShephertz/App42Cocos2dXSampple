@@ -398,14 +398,14 @@ void TestStorageService::insertJsonDocument(Ref *sender)
 */
     //App42API::setIsTraceEnabled(true);
     StorageService *storageService = App42API::BuildStorageService();
-//    const char* dbName = "<Your_DataBase_Name>";
-//    const char* collectionName = "<Your_Collection_Name>";
+    //const char* dbName = "<Your_DataBase_Name>";
+    //const char* collectionName = "<Your_Collection_Name>";
     //const char* jsonDoc ="{\"name\":\"Nick\",\"age\":30,\"phone\":\"xxx-xxx-xxx\"}";
     App42API::setLoggedInUser("RajeevDevice");
     //storageService->setAdminKey(APP_ADMIN_KEY);
-    string jsonDoc = "{\"ach_params\":{\"a\":{\"30\":\"1\",\"31\":\"1\",\"32\":\"1\",\"33\":\"1\",\"34\":\"1\",\"35\":\"1\",\"45\":\"1\",\"46\":\"1\",\"47\":\"1\"},\"rep\":false},\"ach_values\":{\"a\":{\"30\":\"1\",\"31\":\"1\",\"32\":\"1\",\"33\":\"2\",\"34\":\"2\",\"35\":\"2\",\"45\":\"1\",\"46\":\"1\",\"47\":\"1\"},\"rep\":false},\"boss\":{\"rep\":false},\"character\":{\"a\":{\"1\":\"124\"},\"rep\":false},\"chieftain\":{\"rep\":false},\"enemy\":{\"a\":{\"4\":\"1\",\"7\":\"1\"},\"rep\":false},\"facebookId\":\"1375652327\",\"inventory\":{\"a\":{\"-1\":\"1\",\"0\":\"8947\",\"10\":\"1\",\"101\":\"1\",\"131\":\"1\",\"161\":\"1\",\"300\":\"1\"},\"rep\":true},\"outfit\":{\"a\":{\"1\":\"131\"},\"rep\":true},\"stats_max\":{\"a\":{\"0\":\"67\",\"2\":\"189\",\"3\":\"197\",\"4\":\"1\"},\"rep\":false},\"stats_total\":{\"a\":{\"0\":\"67\",\"1\":\"1\",\"2\":\"189\",\"3\":\"197\",\"4\":\"1\"},\"rep\":false},\"timestamp\":1408639836,\"version\":1}";//getJsonString("name", "Rajeev Ranjan", "role", "Developer");
+    const char* jsonDoc = "{\"Ques\":\"How was your day?\",\"Ans\": {\"Option 1\" : \"Good\",\"Option 2\" : \"Bad\",\"Option 3\" :\"Awesome\",\"Option 4\": \"Fantastic\"}}";//getJsonString("name", "Rajeev Ranjan", "role", "Developer");
     //storageService->InsertJsonDocument(dbName, collectionName, jsonDoc.c_str(), app42callback(TestStorageService::onStorageRequestCompleted, this));
-    storageService->InsertJsonDocument(dbName, collectionName, jsonDoc.c_str(), app42callback(TestStorageService::onStorageRequestCompleted, this));
+    storageService->InsertJsonDocument(dbName, collectionName, jsonDoc, app42callback(TestStorageService::onStorageRequestCompleted, this));
 }
 
 void TestStorageService::insertJsonDocumentWithApp42Object(Ref *sender)
@@ -474,7 +474,7 @@ void TestStorageService::findDocumentByQuery(Ref *sender)
     Query *query2 = QueryBuilder::BuildQuery(key2, value2, APP42_OP_GREATER_THAN_EQUALTO);
     Query *query3 = QueryBuilder::CompoundOperator(query1, APP42_OP_OR, query2);
     
-    storageService->FindDocumentByQuery(dbName, collectionName,query3,app42callback(TestStorageService::onStorageRequestCompleted, this));
+    storageService->FindDocumentsByQuery(dbName, collectionName,query3,app42callback(TestStorageService::onStorageRequestCompleted, this));
 }
 void TestStorageService::findDocumentByQueryWithPaging(Ref *sender)
 {
